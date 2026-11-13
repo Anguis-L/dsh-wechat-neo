@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "微信（puppet-neo）",
+    "description": "用开源 wechaty-puppet-neo 协议把个人微信接进 Harness：私聊、群聊文本双向。"
+  }
+}

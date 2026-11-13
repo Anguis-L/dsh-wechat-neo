@@ -1,0 +1,5 @@
+node_modules/
+.DS_Store
+*.log
+.shim-webhook.json
+patches/*.orig

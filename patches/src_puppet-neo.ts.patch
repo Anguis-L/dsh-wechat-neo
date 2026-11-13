@@ -1,0 +1,22 @@
+--- pristine/puppet-neo-main/src/puppet-neo.ts	2026-11-11 06:50:40
++++ /tmp/puppet-neo-main/src/puppet-neo.ts	2026-11-13 10:25:20
+@@ -133,7 +133,10 @@
+ 
+   override async messageSendText(destination: string, text: string, mentions?: string[]): Promise<void> {
+     if (!this.session || !this.online || this.abort?.signal.aborted) throw new Error('Neo session is offline')
+-    if (mentions?.length || destination.endsWith('@chatroom') || !this.contacts.has(destination)) {
++    if (mentions?.length) {
++      throw new Error('Neo does not support text mentions')
++    }
++    if (!destination.endsWith('@chatroom') && !this.contacts.has(destination)) {
+       throw new Error('Neo supports direct text to an observed peer')
+     }
+     const send = this.session.sendText(destination, text)
+@@ -235,6 +238,7 @@
+         this.rememberContact(item.to)
+         putRecent(this.messages, item.id, {
+           id: item.id, talkerId: item.from, listenerId: item.to,
++          ...(item.room ? { roomId: item.room } : {}),
+           text: item.text, timestamp: item.timestamp, type: types.Message.Text,
+         })
+         this.emit('message', { messageId: item.id })

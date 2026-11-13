@@ -1,0 +1,44 @@
+--- pristine/puppet-neo-main/native/src/lib.rs	2026-11-11 06:50:40
++++ /tmp/puppet-neo-main/native/src/lib.rs	2026-11-13 10:25:20
+@@ -50,6 +50,8 @@
+     id: String,
+     from: String,
+     to: String,
++    #[serde(skip_serializing_if = "Option::is_none")]
++    room: Option<String>,
+     text: String,
+     timestamp: u32,
+ }
+@@ -414,15 +416,29 @@
+     for command in commands {
+         if command.id == 5 {
+             if let Ok(message) = wire::decode_add_message(&command.payload, username) {
+-                if message.message_type == 1 && !message.peer.ends_with("@chatroom") {
+-                    if let (Some(id), Some(text)) =
++                if message.message_type == 1 {
++                    if let (Some(id), Some(mut text)) =
+                         (message.server_message_id, message.content_text)
+                     {
+                         if !message.outgoing {
++                            let room = message.peer.ends_with("@chatroom").then(|| message.peer.clone());
++                            let mut sender = message.sender_id.clone().unwrap_or_else(|| {
++                                if room.is_some() { String::new() } else { message.from.clone() }
++                            });
++                            if room.is_some() {
++                                if let Some(idx) = text.find(":\n") {
++                                    let head = text[..idx].to_string();
++                                    if head.len() <= 64 && head.starts_with("wxid_") {
++                                        sender = head;
++                                        text = text[idx + 2..].to_string();
++                                    }
++                                }
++                            }
+                             messages.push(TextMessage {
+                                 id,
+-                                from: message.from,
++                                from: sender,
+                                 to: message.to,
++                                room,
+                                 text,
+                                 timestamp: message.created_at,
+                             });

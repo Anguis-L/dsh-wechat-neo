@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "WeChat (puppet-neo)",
+    "description": "Bridge personal WeChat into Harness via open-source wechaty-puppet-neo: private & group text."
+  }
+}

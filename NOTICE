@@ -1,0 +1,10 @@
+dsh-wechat-neo
+Copyright (c) 2026 Anguis-L
+
+本项目的桥接逻辑（bridge/settings/config/dashboard 等）fork 自：
+  dsh-wechat-pad — Copyright (c) 2026 QIC-9821 — MIT License
+  https://github.com/QIC-9821/dsh-wechat-pad
+
+微信协议能力来自（作为依赖，非本仓库代码）：
+  wechaty/puppet-neo — Apache-2.0
+  wechat-protocol (crate) — 见其 crate 许可

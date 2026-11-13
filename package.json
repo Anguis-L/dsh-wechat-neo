@@ -1,0 +1,69 @@
+{
+  "name": "dsh-wechat-neo",
+  "version": "0.1.1",
+  "description": "Bridge personal WeChat into DeepSeek Harness via an in-process wechaty-puppet-neo sidecar (open-source protocol): private & group text, DM allowlist.",
+  "type": "module",
+  "license": "MIT",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "lib/",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "patches/",
+    "README.md",
+    "NOTICE",
+    "LICENSE"
+  ],
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "dsh-plugin",
+    "wechat",
+    "weixin",
+    "chatbot",
+    "im",
+    "experimental",
+    "unofficial"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test test/bridge.test.mjs test/e2e.test.mjs test/settings.test.mjs"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-settings"
+      ]
+    }
+  },
+  "author": "Anguis-L",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Anguis-L/dsh-wechat-neo.git"
+  },
+  "homepage": "https://github.com/Anguis-L/dsh-wechat-neo#readme",
+  "bugs": {
+    "url": "https://github.com/Anguis-L/dsh-wechat-neo/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
+}

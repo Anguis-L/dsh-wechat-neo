@@ -1,0 +1,31 @@
+--- pristine/puppet-neo-main/src/native-platforms.json	2026-11-11 06:50:40
++++ /tmp/puppet-neo-main/src/native-platforms.json	2026-11-13 08:48:04
+@@ -1,6 +1,22 @@
+ {
+-  "linux-x64": { "target": "x86_64-unknown-linux-gnu", "binary": "libpuppet_neo_native.so" },
+-  "linux-arm64": { "target": "aarch64-unknown-linux-gnu", "binary": "libpuppet_neo_native.so" },
+-  "darwin-arm64": { "target": "aarch64-apple-darwin", "binary": "libpuppet_neo_native.dylib" },
+-  "win32-x64": { "target": "x86_64-pc-windows-msvc", "binary": "puppet_neo_native.dll" }
+-}
++  "linux-x64": {
++    "target": "x86_64-unknown-linux-gnu",
++    "binary": "libpuppet_neo_native.so"
++  },
++  "linux-arm64": {
++    "target": "aarch64-unknown-linux-gnu",
++    "binary": "libpuppet_neo_native.so"
++  },
++  "darwin-arm64": {
++    "target": "aarch64-apple-darwin",
++    "binary": "libpuppet_neo_native.dylib"
++  },
++  "win32-x64": {
++    "target": "x86_64-pc-windows-msvc",
++    "binary": "puppet_neo_native.dll"
++  },
++  "darwin-x64": {
++    "target": "x86_64-apple-darwin",
++    "binary": "libpuppet_neo_native.dylib"
++  }
++}
+\ No newline at end of file
